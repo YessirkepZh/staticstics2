@@ -92,9 +92,36 @@ svg {
 }
 hr {
   border:none;
-  border-top:1px dotted rgb(250, 194, 139);
+  border-top:2px dotted rgb(250, 194, 139);
   color:#fff;
   background-color:#fff;
   height:1px;
-  width:00%;
+  width:100%;
+}
+.year ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+
+}
+
+.year li {
+  float: right;
+}
+
+.year li {
+  display: block;
+  color: rgb(50, 144, 91);
+  text-align: end;
+  padding: 0 8px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.year  li:selected {
+  color:rgb(251, 197, 39);
+}
+.current{
+  color:rgb(251, 197, 39);
 }

@@ -2,6 +2,10 @@
 import './style.css';
 var wordStates = document.querySelectorAll(".list-of-states li");
 var svgStates = document.querySelectorAll("#states > *");
+
+var val=getDateArray();
+// genrateYears(val);
+makeList();
 function removeAllOn() {
     try {
         document.getElementById("info-box").style.display = "none";
@@ -141,3 +145,59 @@ function getcurrentState(id) {
             break;
     }
 }
+function getDateArray(){
+  const today= new Date();
+  const yearStart = 2013;
+  const yearEnd = today.getFullYear();;
+  var arr = [];
+    while(yearStart < yearEnd+1){
+      arr.push(yearStart++);
+    }
+  return arr 
+}
+
+function makeList() {
+    // Establish the array which acts as a data source for the list
+    let listData = getDateArray(),
+    // Make a container element for the list
+    listContainer = document.createElement('div'),
+    
+    // Make the list
+    listElement = document.createElement('ul'),
+    // Set up a loop that goes through the items in listItems one at a time
+    numberOfListItems = listData.length,
+    listItem,
+    i;
+    
+    // Add it to the page
+    document.getElementById('yearMain').appendChild(listContainer);
+    document.getElementById('yearMain').classList.add('year');
+    listContainer.appendChild(listElement);
+
+    for (i = 0; i < numberOfListItems; ++i) {
+        // create an item for each one
+        listItem = document.createElement('li');
+        listItem.classList.add('yearList');
+        // Add the item text
+        listItem.innerHTML = listData[i];
+
+        // Add listItem to the listElement
+         
+        listElement.appendChild(listItem);
+          if (i === numberOfListItems.length - 1) {
+             listItem.classList.add('current');
+          }
+    }
+    document.getElementById('yearMain').appendChild(document.createElement('hr'));
+
+}
+
+$( document ).ready(function() {
+
+  $('.yearList').click(function(e) 
+   { 
+      console.log(e);
+      // $('li.yearList.current').removeClass('current');
+      // $('li.yearList').closest('li').addClass('current');
+   });
+});
