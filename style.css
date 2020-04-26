@@ -119,9 +119,35 @@ hr {
   cursor: pointer;
 }
 
-.year  li:selected {
-  color:rgb(251, 197, 39);
-}
+/* .year  li:hover {
+  font-size: 16px;
+  font-weight: 700;
+} */
 .current{
-  color:rgb(251, 197, 39);
+  color:rgb(251, 197, 39)!important;
+}
+.dot {
+  height: 5px;
+  width: 5px;
+  background-color: rgb(251, 197, 39);
+  border-radius: 50%;
+  display: inline-block;
+  position: absolute;
+  top:38px;
+  margin-left:-20px;
+  
+}
+.dotM {
+  height: 5px;
+  width: 5px;
+  background-color: rgb(251, 197, 39);
+  border-radius: 50%;
+  display: inline-block;
+  position: absolute;
+  top:74px;
+  margin-left:-20px;
+  
+}
+svg{
+  margin-top:30px;
 }

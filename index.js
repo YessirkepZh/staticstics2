@@ -3,9 +3,32 @@ import './style.css';
 var wordStates = document.querySelectorAll(".list-of-states li");
 var svgStates = document.querySelectorAll("#states > *");
 
-var val=getDateArray();
-// genrateYears(val);
-makeList();
+
+var months = [ 'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь' ];
+
+function getDateArray(){
+  const today= new Date();
+  const yearStart = 2013;
+  const yearEnd = today.getFullYear();;
+  var arr = [];
+    while(yearStart < yearEnd+1){
+      arr.push(yearStart++);
+    }
+  return arr 
+}
+function getTotalMonth(year){
+  var today = new Date(year);
+  if (year==null){
+    return months.slice(today.getMonth,months.length);
+  }
+  else {
+    return months;
+  }
+  
+}
+
+makeList(getDateArray(),'yearMain',true);
+makeList(getTotalMonth(),'monthMain',false);
 function removeAllOn() {
     try {
         document.getElementById("info-box").style.display = "none";
@@ -145,20 +168,15 @@ function getcurrentState(id) {
             break;
     }
 }
-function getDateArray(){
-  const today= new Date();
-  const yearStart = 2013;
-  const yearEnd = today.getFullYear();;
-  var arr = [];
-    while(yearStart < yearEnd+1){
-      arr.push(yearStart++);
-    }
-  return arr 
-}
+function deleteDiv(id){
 
-function makeList() {
+  return 
+}
+function makeList(litsD,id,check) {
+    document.getElementById(id).classList.remove('year');
     // Establish the array which acts as a data source for the list
-    let listData = getDateArray(),
+    let listData = litsD,
+    
     // Make a container element for the list
     listContainer = document.createElement('div'),
     
@@ -170,25 +188,38 @@ function makeList() {
     i;
     
     // Add it to the page
-    document.getElementById('yearMain').appendChild(listContainer);
-    document.getElementById('yearMain').classList.add('year');
+    
+    document.getElementById(id).appendChild(listContainer);
+    document.getElementById(id).classList.add('year');
     listContainer.appendChild(listElement);
 
     for (i = 0; i < numberOfListItems; ++i) {
         // create an item for each one
         listItem = document.createElement('li');
-        listItem.classList.add('yearList');
+        listItem.classList.add(check==true ? 'yearList': 'monthList');
+        if(check){
+          if (i === numberOfListItems - 1) {
+              listItem.classList.add('current');
+            }
+        }
+        if(!check){
+          // var today=new Date();
+          // if (litsD[litsD.length-1] == today.getFullYear().toString()){
+
+            
+          // }
+        
+
+        }
         // Add the item text
-        listItem.innerHTML = listData[i];
+        listItem.innerHTML = listData[i]+`<span class="${check==true ? 'dot' : 'dotM'}"></span>`;
 
         // Add listItem to the listElement
          
         listElement.appendChild(listItem);
-          if (i === numberOfListItems.length - 1) {
-             listItem.classList.add('current');
-          }
+          
     }
-    document.getElementById('yearMain').appendChild(document.createElement('hr'));
+    document.getElementById(id).appendChild(document.createElement('hr'));
 
 }
 
@@ -196,8 +227,21 @@ $( document ).ready(function() {
 
   $('.yearList').click(function(e) 
    { 
-      console.log(e);
-      // $('li.yearList.current').removeClass('current');
-      // $('li.yearList').closest('li').addClass('current');
+      console.log(e.target.value);
+      $('li.yearList.current').removeClass('current');
+      $(this).closest('li').addClass('current');
+
+      makeList(getDateArray(),'yearMain',true);
+
    });
+
+
+   $('.monthList').click(function(e) 
+   {
+      console.log(e);
+      $('li.monthList.current').removeClass('current');
+      $(this).closest('li').addClass('current');
+      makeList(getTotalMonth(),'monthMain',false);
+   });
+   
 });
