@@ -5,9 +5,10 @@ var svgStates = document.querySelectorAll("#states > *");
 
 
 var months = [ 'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь' ];
+const today= new Date();
 
 function getDateArray(){
-  const today= new Date();
+
   const yearStart = 2013;
   const yearEnd = today.getFullYear();;
   var arr = [];
@@ -17,18 +18,19 @@ function getDateArray(){
   return arr 
 }
 function getTotalMonth(year){
-  var today = new Date(year);
-  if (year==null){
-    return months.slice(today.getMonth,months.length);
+  try{
+      if (year==null || year == today.getFullYear().toString()){
+        return months.slice(0,today.getMonth()+1);
+      }
+      else {
+        return months;
+      }
   }
-  else {
-    return months;
+  catch(e){
+    console.log(e);
   }
-  
 }
 
-makeList(getDateArray(),'yearMain',true);
-makeList(getTotalMonth(),'monthMain',false);
 function removeAllOn() {
     try {
         document.getElementById("info-box").style.display = "none";
@@ -169,11 +171,12 @@ function getcurrentState(id) {
     }
 }
 function deleteDiv(id){
-
-  return 
+  var myNode = document.getElementById(id);
+  myNode.innerHTML = '';
+ 
 }
 function makeList(litsD,id,check) {
-    document.getElementById(id).classList.remove('year');
+    
     // Establish the array which acts as a data source for the list
     let listData = litsD,
     
@@ -197,20 +200,23 @@ function makeList(litsD,id,check) {
         // create an item for each one
         listItem = document.createElement('li');
         listItem.classList.add(check==true ? 'yearList': 'monthList');
-        if(check){
-          if (i === numberOfListItems - 1) {
-              listItem.classList.add('current');
-            }
-        }
-        if(!check){
-          // var today=new Date();
-          // if (litsD[litsD.length-1] == today.getFullYear().toString()){
+        // if (i === numberOfListItems - 1) {
+        //        listItem.classList.add('current');
+        //      }
+        // if(check){
+        //   if (i === numberOfListItems - 1) {
+        //       listItem.classList.add('current');
+        //     }
+        // }
+        // if(!check){
+          
+        //   if (litsD[litsD.length-1] == today.getFullYear().toString()){
 
             
-          // }
+        //   }
         
 
-        }
+        // }
         // Add the item text
         listItem.innerHTML = listData[i]+`<span class="${check==true ? 'dot' : 'dotM'}"></span>`;
 
@@ -224,24 +230,43 @@ function makeList(litsD,id,check) {
 }
 
 $( document ).ready(function() {
+  makeList(getDateArray(),'yearMain',true);
+  makeList(getTotalMonth(),'monthMain',false);
+ 
 
   $('.yearList').click(function(e) 
    { 
-      console.log(e.target.value);
-      $('li.yearList.current').removeClass('current');
-      $(this).closest('li').addClass('current');
+      try
+        {
+          console.log(e.target.innerText);
+          // if (e.target.innerText == today.getFullYear().toString())
+          //   {
+             
+          //   }
+          deleteDiv('monthMain');
+          makeList(getTotalMonth(e.target.innerText),'monthMain',false);
 
-      makeList(getDateArray(),'yearMain',true);
-
+          $('li.yearList.current').removeClass('current');
+          $(this).closest('li').addClass('current');
+        }
+      catch(e){
+        console.log(e)
+      }
    });
 
 
-   $('.monthList').click(function(e) 
+   $('li.monthList').click(function(e) 
    {
-      console.log(e);
-      $('li.monthList.current').removeClass('current');
-      $(this).closest('li').addClass('current');
-      makeList(getTotalMonth(),'monthMain',false);
+      try
+        {
+          console.log(e);
+          $('li.monthList.current').removeClass('current');
+          $(this).closest('li').addClass('current');
+         
+        }
+     catch(e){
+       console.log(e)
+     }
    });
    
 });
