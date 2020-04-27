@@ -1,5 +1,6 @@
 // Import stylesheets
 import './style.css';
+
 var wordStates = document.querySelectorAll(".list-of-states li");
 var svgStates = document.querySelectorAll("#states > *");
 
