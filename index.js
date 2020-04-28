@@ -544,7 +544,9 @@ var dataSource = {
 
 var months = [ 'Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь' ];
 const today = new Date();
-
+var yearT = today.getFullYear().toString();
+var monthT = (today.getMonth()+1).toString();
+var indexMonth;
 function getDateSource(date){ // data - format '02.2014'
   try{
     const myObj= JSON.parse(JSON.stringify(dataSource));
@@ -560,31 +562,31 @@ function getDateSource(date){ // data - format '02.2014'
     console.error(ex);
   }
 }
+
 var curData = getDateSource('02.2014');
 
 function getDataState(id){
   try{
-  const filtered = Object.keys(curData)
-      .filter(key => key.toString() ==id)
-      .reduce((obj, key) => {
-        obj = curData[key];
-        return obj;
-      },{});
-  return filtered;
+    const filtered = Object.keys(curData)
+        .filter(key => key.toString() ==id)
+        .reduce((obj, key) => {
+          obj = curData[key];
+          return obj;
+        },{});
+    return filtered;
   }
   catch (ex){
     console.error(ex);
   }
 }
 
-// function refreshData(){
-// console.log();
-// }
+function refreshData(){
+
+}
 
 
 
 function getDateArray(){
-
   const yearStart = 2013;
   const yearEnd = today.getFullYear();;
   var arr = [];
@@ -593,6 +595,7 @@ function getDateArray(){
     }
   return arr 
 }
+
 function getTotalMonth(year){
   try{
       if (year==null || year == today.getFullYear().toString()){
@@ -705,55 +708,166 @@ function getcurrentState(id) {
             oppv_sum.innerHTML = parseFloat(val.OPPV.amount).toLocaleString();
             dpv_count.innerHTML = parseFloat(val.DPV.count).toLocaleString();
             dpv_sum.innerHTML = parseFloat(val.DPV.amount).toLocaleString();
-          
             break;
         case 's2':
             state.innerHTML = "Алматы";
+            let val = getDataState('2');
+            opv_count.innerHTML = parseFloat(val.OPV.count).toLocaleString();
+            opv_sum.innerHTML = parseFloat(val.OPV.amount).toLocaleString();
+            oppv_count.innerHTML = parseFloat(val.OPPV.count).toLocaleString();
+            oppv_sum.innerHTML = parseFloat(val.OPPV.amount).toLocaleString();
+            dpv_count.innerHTML = parseFloat(val.DPV.count).toLocaleString();
+            dpv_sum.innerHTML = parseFloat(val.DPV.amount).toLocaleString();
             break;
         case 's3':
             state.innerHTML = "Шымкент";
+            let val = getDataState('3');
+            opv_count.innerHTML = parseFloat(val.OPV.count).toLocaleString();
+            opv_sum.innerHTML = parseFloat(val.OPV.amount).toLocaleString();
+            oppv_count.innerHTML = parseFloat(val.OPPV.count).toLocaleString();
+            oppv_sum.innerHTML = parseFloat(val.OPPV.amount).toLocaleString();
+            dpv_count.innerHTML = parseFloat(val.DPV.count).toLocaleString();
+            dpv_sum.innerHTML = parseFloat(val.DPV.amount).toLocaleString();
             break;
         case 's4':
             state.innerHTML = "Акмолинская область";
+            let val = getDataState('4');
+            opv_count.innerHTML = parseFloat(val.OPV.count).toLocaleString();
+            opv_sum.innerHTML = parseFloat(val.OPV.amount).toLocaleString();
+            oppv_count.innerHTML = parseFloat(val.OPPV.count).toLocaleString();
+            oppv_sum.innerHTML = parseFloat(val.OPPV.amount).toLocaleString();
+            dpv_count.innerHTML = parseFloat(val.DPV.count).toLocaleString();
+            dpv_sum.innerHTML = parseFloat(val.DPV.amount).toLocaleString();
             break;
         case 's5':
             state.innerHTML = "Актюбинская область";
+            let val = getDataState('7');
+            opv_count.innerHTML = parseFloat(val.OPV.count).toLocaleString();
+            opv_sum.innerHTML = parseFloat(val.OPV.amount).toLocaleString();
+            oppv_count.innerHTML = parseFloat(val.OPPV.count).toLocaleString();
+            oppv_sum.innerHTML = parseFloat(val.OPPV.amount).toLocaleString();
+            dpv_count.innerHTML = parseFloat(val.DPV.count).toLocaleString();
+            dpv_sum.innerHTML = parseFloat(val.DPV.amount).toLocaleString();
             break;
         case 's6':
             state.innerHTML = "Алматинская область";
+            let val = getDataState('6');
+            opv_count.innerHTML = parseFloat(val.OPV.count).toLocaleString();
+            opv_sum.innerHTML = parseFloat(val.OPV.amount).toLocaleString();
+            oppv_count.innerHTML = parseFloat(val.OPPV.count).toLocaleString();
+            oppv_sum.innerHTML = parseFloat(val.OPPV.amount).toLocaleString();
+            dpv_count.innerHTML = parseFloat(val.DPV.count).toLocaleString();
+            dpv_sum.innerHTML = parseFloat(val.DPV.amount).toLocaleString();
             break;
         case 's7':
             state.innerHTML = "Атырауская область";
+            let val = getDataState('7');
+            opv_count.innerHTML = parseFloat(val.OPV.count).toLocaleString();
+            opv_sum.innerHTML = parseFloat(val.OPV.amount).toLocaleString();
+            oppv_count.innerHTML = parseFloat(val.OPPV.count).toLocaleString();
+            oppv_sum.innerHTML = parseFloat(val.OPPV.amount).toLocaleString();
+            dpv_count.innerHTML = parseFloat(val.DPV.count).toLocaleString();
+            dpv_sum.innerHTML = parseFloat(val.DPV.amount).toLocaleString();
             break;
         case 's8':
             state.innerHTML = "Восточно-Казахстанская область";
+            let val = getDataState('8');
+            opv_count.innerHTML = parseFloat(val.OPV.count).toLocaleString();
+            opv_sum.innerHTML = parseFloat(val.OPV.amount).toLocaleString();
+            oppv_count.innerHTML = parseFloat(val.OPPV.count).toLocaleString();
+            oppv_sum.innerHTML = parseFloat(val.OPPV.amount).toLocaleString();
+            dpv_count.innerHTML = parseFloat(val.DPV.count).toLocaleString();
+            dpv_sum.innerHTML = parseFloat(val.DPV.amount).toLocaleString();
             break;
         case 's9':
             state.innerHTML = "Жамбылская область";
+            let val = getDataState('9');
+            opv_count.innerHTML = parseFloat(val.OPV.count).toLocaleString();
+            opv_sum.innerHTML = parseFloat(val.OPV.amount).toLocaleString();
+            oppv_count.innerHTML = parseFloat(val.OPPV.count).toLocaleString();
+            oppv_sum.innerHTML = parseFloat(val.OPPV.amount).toLocaleString();
+            dpv_count.innerHTML = parseFloat(val.DPV.count).toLocaleString();
+            dpv_sum.innerHTML = parseFloat(val.DPV.amount).toLocaleString();
             break;
         case 's10':
             state.innerHTML = "Западно-Казахстанская область";
+            let val = getDataState('10');
+            opv_count.innerHTML = parseFloat(val.OPV.count).toLocaleString();
+            opv_sum.innerHTML = parseFloat(val.OPV.amount).toLocaleString();
+            oppv_count.innerHTML = parseFloat(val.OPPV.count).toLocaleString();
+            oppv_sum.innerHTML = parseFloat(val.OPPV.amount).toLocaleString();
+            dpv_count.innerHTML = parseFloat(val.DPV.count).toLocaleString();
+            dpv_sum.innerHTML = parseFloat(val.DPV.amount).toLocaleString();
             break;
         case 's11':
             state.innerHTML = "Карагандинская область";
+            let val = getDataState('11');
+            opv_count.innerHTML = parseFloat(val.OPV.count).toLocaleString();
+            opv_sum.innerHTML = parseFloat(val.OPV.amount).toLocaleString();
+            oppv_count.innerHTML = parseFloat(val.OPPV.count).toLocaleString();
+            oppv_sum.innerHTML = parseFloat(val.OPPV.amount).toLocaleString();
+            dpv_count.innerHTML = parseFloat(val.DPV.count).toLocaleString();
+            dpv_sum.innerHTML = parseFloat(val.DPV.amount).toLocaleString();
             break;
         case 's12':
             state.innerHTML = "Костанайская область";
+            let val = getDataState('12');
+            opv_count.innerHTML = parseFloat(val.OPV.count).toLocaleString();
+            opv_sum.innerHTML = parseFloat(val.OPV.amount).toLocaleString();
+            oppv_count.innerHTML = parseFloat(val.OPPV.count).toLocaleString();
+            oppv_sum.innerHTML = parseFloat(val.OPPV.amount).toLocaleString();
+            dpv_count.innerHTML = parseFloat(val.DPV.count).toLocaleString();
+            dpv_sum.innerHTML = parseFloat(val.DPV.amount).toLocaleString();
             break;
         case 's13':
             state.innerHTML = "Кызылординская область";
+            let val = getDataState('13');
+            opv_count.innerHTML = parseFloat(val.OPV.count).toLocaleString();
+            opv_sum.innerHTML = parseFloat(val.OPV.amount).toLocaleString();
+            oppv_count.innerHTML = parseFloat(val.OPPV.count).toLocaleString();
+            oppv_sum.innerHTML = parseFloat(val.OPPV.amount).toLocaleString();
+            dpv_count.innerHTML = parseFloat(val.DPV.count).toLocaleString();
+            dpv_sum.innerHTML = parseFloat(val.DPV.amount).toLocaleString();
             break;
         case 's14':
             state.innerHTML = "Мангистауская область";
+            let val = getDataState('14');
+            opv_count.innerHTML = parseFloat(val.OPV.count).toLocaleString();
+            opv_sum.innerHTML = parseFloat(val.OPV.amount).toLocaleString();
+            oppv_count.innerHTML = parseFloat(val.OPPV.count).toLocaleString();
+            oppv_sum.innerHTML = parseFloat(val.OPPV.amount).toLocaleString();
+            dpv_count.innerHTML = parseFloat(val.DPV.count).toLocaleString();
+            dpv_sum.innerHTML = parseFloat(val.DPV.amount).toLocaleString();
             break;
         case 's15':
             state.innerHTML = "Павлодарская область";
+            let val = getDataState('15');
+            opv_count.innerHTML = parseFloat(val.OPV.count).toLocaleString();
+            opv_sum.innerHTML = parseFloat(val.OPV.amount).toLocaleString();
+            oppv_count.innerHTML = parseFloat(val.OPPV.count).toLocaleString();
+            oppv_sum.innerHTML = parseFloat(val.OPPV.amount).toLocaleString();
+            dpv_count.innerHTML = parseFloat(val.DPV.count).toLocaleString();
+            dpv_sum.innerHTML = parseFloat(val.DPV.amount).toLocaleString();
             break;
         case 's16':
             state.innerHTML = "Северо-Казахстанская область";
+            let val = getDataState('16');
+            opv_count.innerHTML = parseFloat(val.OPV.count).toLocaleString();
+            opv_sum.innerHTML = parseFloat(val.OPV.amount).toLocaleString();
+            oppv_count.innerHTML = parseFloat(val.OPPV.count).toLocaleString();
+            oppv_sum.innerHTML = parseFloat(val.OPPV.amount).toLocaleString();
+            dpv_count.innerHTML = parseFloat(val.DPV.count).toLocaleString();
+            dpv_sum.innerHTML = parseFloat(val.DPV.amount).toLocaleString();
             break;
         case 's17':
             state.innerHTML = "Туркестанская область";
+            let val = getDataState('17');
+            opv_count.innerHTML = parseFloat(val.OPV.count).toLocaleString();
+            opv_sum.innerHTML = parseFloat(val.OPV.amount).toLocaleString();
+            oppv_count.innerHTML = parseFloat(val.OPPV.count).toLocaleString();
+            oppv_sum.innerHTML = parseFloat(val.OPPV.amount).toLocaleString();
+            dpv_count.innerHTML = parseFloat(val.DPV.count).toLocaleString();
+            dpv_sum.innerHTML = parseFloat(val.DPV.amount).toLocaleString();
             break;
         default:
             state.innerHTML = " ";
@@ -769,12 +883,9 @@ function makeList(litsD,id,check) {
     
     // Establish the array which acts as a data source for the list
     let listData = litsD,
-    
-    // Make a container element for the list
-    listContainer = document.createElement('div'),
-    
     // Make the list
     listElement = document.createElement('ul'),
+    // listElement.setAttribute("id", check == true ? "yearList": "monthList"),
     // Set up a loop that goes through the items in listItems one at a time
     numberOfListItems = listData.length,
     listItem,
@@ -782,17 +893,18 @@ function makeList(litsD,id,check) {
     
     // Add it to the page
     
-    document.getElementById(id).appendChild(listContainer);
+    
     document.getElementById(id).classList.add('year');
-    listContainer.appendChild(listElement);
+    document.getElementById(id).appendChild(listElement);
 
     for (i = 0; i < numberOfListItems; ++i) {
         // create an item for each one
         listItem = document.createElement('li');
         listItem.classList.add(check==true ? 'yearList': 'monthList');
-        // if (i === numberOfListItems - 1) {
-        //        listItem.classList.add('current');
-        //      }
+        
+        if (i === numberOfListItems - 1) {
+               listItem.classList.add('current');
+             }
         // if(check){
         //   if (i === numberOfListItems - 1) {
         //       listItem.classList.add('current');
@@ -818,45 +930,125 @@ function makeList(litsD,id,check) {
     document.getElementById(id).appendChild(document.createElement('hr'));
 
 }
+function createYearList(){
+  var yearArr = getDateArray();
+  var main = $('#yearMain')
+  var cList = $('ul.yearUl')
+  $.each(yearArr, function(i)
+  {
+      // var spot = '<span class="dot"></span>';    
+      // var li = $('<li/>')
+      //     .addClass('yearList')
+      //     .appendTo(cList,spot);
+      // var aaa = $('<a/>')
+      //     .addClass('ui-all')
+      //     .text(yearArr[i])
+      //     .appendTo(li);
+      cList.append(`<li class="yearList">${yearArr[i]}<span class="dot"></span></li>`);
+      if (i === yearArr.length-1){
+            $('.yearList').eq(i).addClass('current');
+      }
+    
+  });
+  cList.appendTo(main);
+  main.append(`<hr id="hr1">`);
+  // document.getElementById('yearMain').appendChild(document.createElement('hr'));
+}
+
+function createMonthList(date){
+  var yearArr = getTotalMonth(date);
+  var main = $('#monthMain')
+  var cList = $('ul.monthUl')
+  $.each(yearArr, function(i)
+  {
+    cList.append(`<li class="monthList">${yearArr[i]}<span class="dotM"></span></li>`);
+        if(indexMonth){
+          $('.monthList').eq(indexMonth).addClass('current');
+            // document.createElement('li').classList.add('current');;
+            // $(this).closest('li').addClass('current');
+        }
+        else {
+          console.log(yearArr.length)
+          if (i === yearArr.length-1){
+            $('.monthList').eq(i).addClass('current');
+          }
+        }
+
+  });
+  
+  cList.appendTo(main);
+  main.append(`<hr id="hr2">`);
+
+  // document.getElementById('monthMain').appendChild(document.createElement('hr'));
+}
+
 
 $( document ).ready(function() {
-  makeList(getDateArray(),'yearMain',true);
-  makeList(getTotalMonth(),'monthMain',false);
- 
+  // makeList(getDateArray(),'yearMain',true);
+  // makeList(getTotalMonth(),'monthMain',false);
+  createYearList();
+  createMonthList();
 
   $('.yearList').click(function(e) 
    { 
       try
         {
-          console.log(e.target.innerText);
-          // if (e.target.innerText == today.getFullYear().toString())
-          //   {
-             
-          //   }
-          deleteDiv('monthMain');
-          makeList(getTotalMonth(e.target.innerText),'monthMain',false);
-
-          $('li.yearList.current').removeClass('current');
+          $('.monthList').remove();
+          $('#hr2').remove();
+          createMonthList(e.target.innerText);
+          // makeList(getTotalMonth(e.target.innerText),'monthMain',false);
+          $('.yearList.current').removeClass('current');
           $(this).closest('li').addClass('current');
+          yearT = $(this).text();
+          
+          
         }
       catch(e){
         console.log(e)
       }
    });
 
+  function clickedYear(e){
+    console.log(e)
+  }
 
-   $('li.monthList').click(function(e) 
-   {
-      try
-        {
-          console.log(e);
-          $('li.monthList.current').removeClass('current');
-          $(this).closest('li').addClass('current');
+  // $('li.monthList').on("click", function( event ){
+  //    event.preventDefault();
+  //     // console.log(e);
+  //     $('.monthList.current').removeClass('current');
+  //     $(this).closest('li').addClass('current');
+  // });
+
+//  $('.monthList').click(function(e) 
+//    {
+//       try
+//         {
+//           console.log(e);
+//           $('li.monthList.current').removeClass('current');
+//           $(this).closest('li').addClass('current');
          
-        }
-     catch(e){
-       console.log(e)
-     }
+//         }
+//      catch(e){
+//        console.log(e)
+//      }
+//    });
+
+
+ 
    });
-   
+
+    
+   $(document).on('click','li.monthList', function( event ) {
+       try{
+        event.preventDefault();
+        $('.monthList.current').removeClass('current');
+        $(this).closest('li').addClass('current');
+          indexMonth = $(this).index();
+          
+          console.log(indexMonth);
+       }
+       catch(e){
+         console.error(e);
+       }
+
 });
