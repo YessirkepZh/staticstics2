@@ -681,8 +681,17 @@ svgStates.forEach(function (el) {
     });
 });
 $(document).mousemove(function (e) {
-    $('#info-box').css('top', e.pageY - $('#info-box').height() + 380);
-    $('#info-box').css('left', e.pageX - ($('#info-box').width()) / 2);
+     var heightW =  e.pageY - $('#info-box').height() + 380;
+     var widthW =  e.pageX - ($('#info-box').width()) / 5;
+     console.log('height = '+(heightW+$('#info-box').height()));
+     console.log('window = '+$(window).height());
+    //  if($(window).height() < heightW){
+    //    console.log(heightW);
+    //    heightW= heightW - (heightW-$(window).height());
+    //  }
+
+    $('#info-box').css('top', $(window).height() < ( heightW + $('#info-box').height() )? heightW - (( heightW + $('#info-box').height() ) - $(window).height()) : heightW);
+    $('#info-box').css('left', $(window).width() < ( widthW + $('#info-box').width() )? heightW - (( heightW + $('#info-box').width() ) - $(window).width()) : widthW);
 }).mouseover();
 var ios = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 if (ios) {
